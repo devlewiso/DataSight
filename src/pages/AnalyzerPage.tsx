@@ -7,9 +7,10 @@ import { analyzeColumn } from '../utils/analysis';
 import { FileSpreadsheet } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+import { useFileContext } from '../context/FileContext';
+
 export const AnalyzerPage: React.FC = () => {
-  const [fileData, setFileData] = useState<FileData | null>(null);
-  const [analysis, setAnalysis] = useState<AnalysisResult[]>([]);
+  const { fileData, setFileData, analysis, setAnalysis, setIsChatOpen } = useFileContext();
 
   const handleFileLoad = (data: FileData) => {
     setFileData(data);
@@ -17,6 +18,8 @@ export const AnalyzerPage: React.FC = () => {
       analyzeColumn(data.content, index, header)
     );
     setAnalysis(columnAnalysis);
+    setAnalysis(columnAnalysis);
+    // Chat starts closed by default
   };
 
   return (
